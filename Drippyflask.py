@@ -48,7 +48,7 @@ def pickup():
 #Main function
 def main():
     '''
-    Purpose: To run all functions
+    Purpose: To run all functions in order that it is written
     Parameters:None
     Returns:None
     '''

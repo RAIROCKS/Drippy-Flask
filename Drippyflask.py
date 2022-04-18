@@ -4,7 +4,21 @@ from random import randint
 
 #List of random names
 names = ["Marlon","Peire","Fatimah","Zara","Hannah","Yammy","Quin","Gabriel","Karen","Eren"]
+ #Customer details dictionary
+customer_details ={}
 
+#Validates inputs to check if they are blank
+def not_blank(question):
+    valid = False
+    while not valid:
+        response=input(question)
+        if  response != "":
+            return response.title()
+        else:
+            print("This cannot be blank")
+
+
+#Welcome Message
 def welcome():
     '''
     Purpose: To generate a random name from the list and print out
@@ -19,7 +33,7 @@ def welcome():
     print("****** I will be here to help you order your drippy flask/s ******")
 
 #Menu for pickup or delivery
-def pickup():
+def order_type():
     print ("Is your order for pickup or delivery?") 
     print ("For pick up please enter 1 ")
     print ("For delivery please enter 2")
@@ -40,9 +54,16 @@ def pickup():
             print ("That is not a valid number")
             print ("Please enter 1 or 2")
 
+#Pick up information - name and phone number
+def pickup():
+    question = ("Please enter your name")
+    customer_details ['name'] = not_blank(question)
+    print (customer_details ['name']) 
 
-
-
+    question = ("Please enter your phone number")
+    customer_details ['phone'] = not_blank(question)
+    print (customer_details ['phone'])  
+    print (customer_details)
 
 
 #Main function
@@ -53,7 +74,7 @@ def main():
     Returns:None
     '''
     welcome()
+    order_type()
     pickup()
-
 
 main()

@@ -6,10 +6,10 @@ from random import randint
 #List of random names
 names = ["Marlon","Peire","Fatimah","Zara","Hannah","Yammy","Quin","Gabriel","Karen","Eren"]
 #Lists of bottle names
-bottle_names =["Ice cool blue","Red and hot","Chill green","Relax rainbow","Black and bold","Humble purple",
-"Aqua flask","Luxury Gold","Silvery simple","Orange hub","Clean White","Lovely pink"]
+bottle_names =['Ice cool blue','Red and hot','Chill green','Relax rainbow','Black and bold','Humble purple',
+'Aqua flask','Luxury Gold','Silvery simple','Orange hub','Clean White','Lovely pink']
 #Lists of bottle prices
-bottle_prices=['60','65','65','62','55','62','66','69','47','69','49','52',]
+bottle_prices=[60,65,65,62,55,62,66,69,47,69,49,52,]
 #list to store ordered waterbottles
 order_list= []
 #list to store waterbottles prices
@@ -45,6 +45,7 @@ def welcome():
 
 #Menu for pickup or delivery
 def order_type():
+    del_pick = ""
     print ("Is your order for pickup or delivery?") 
     print ("For pick up please enter 1 ")
     print ("For delivery please enter 2")
@@ -52,20 +53,24 @@ def order_type():
         try:
             delivery = int(input("Please enter a number"))
             if delivery >= 1 and delivery  <= 2:
+#Sets it up so the code will be delivery if customer chose number 2
                 if delivery == 1: 
                     print ("Pickup")
+                    del_pick="pickup"
                     pickup_info()
                     break
-
+#Sets it up so the code will be delivery if customer chose number 2
                 elif delivery == 2:
                     print ("Delivery")
                     delivery_info()
+                    del_pick = delivery
                     break
             else:
                 print("The Number must be 1 or 2")
         except ValueError:
             print ("That is not a valid number")
             print ("Please enter 1 or 2")
+    return del_pick
 
 #Pick up information - name and phone number
 def pickup_info():
@@ -103,7 +108,7 @@ def delivery_info():
 def menu():
     number_bottles = 12
     for count in range(number_bottles) :
-        print("{} {} ${:.2}" .format(count+1,bottle_names[count],bottle_prices[count]))
+        print("{} {} ${:.2f}" .format(count+1,bottle_names[count],bottle_prices[count]))
 
 #Choose total number of Waterbottles
 #Waterbottle order - from menu - printed each pizza ordered with cast
@@ -140,12 +145,35 @@ def order_waterbottle():
             waterbottle_ordered = waterbottle_ordered-1
             order_list.append(bottle_names[waterbottle_ordered])
             order_cost.append(bottle_prices[waterbottle_ordered])
-            print("{} ${:.2}" .format(bottle_names[waterbottle_ordered],bottle_prices[waterbottle_ordered]))
+            print("{} ${:.2f}" .format(bottle_names[waterbottle_ordered],bottle_prices[waterbottle_ordered]))
             num_waterbottles = num_waterbottles-1 
 
+#Print order out _omfc;idomg of prder os delivery or pickup and names and price of each pizza - total cost including any delivery charge
+def print_order(del_pick):
+    total_cost = sum(order_cost)
+    print("Customer Details")
+    if del_pick == "pickup":
+        print ("Your Order is for pickup")
+        print(f"Customer name: {customer_details['name']} \nCustomer phone: {customer_details['phone']}")
+    elif del_pick == "delivery":
+        print ("Your Order is for delivery")
+        print(f"Customer name: {customer_details['name']} \nCustomer phone: {customer_details['phone']}\nCustomer Address:{customer_details['house']} {customer_details['street']} {customer_details['suburb']} ")
+    print ()
+    print("Order Details")
+    count = 0
+    for item in order_list:
+        print ("Ordered: {} Cost ${:2}".format(item, order_cost[count]))
+        count = count+1
+    print()
+    print("Total Order Cost")
+    print(f"${total_cost:.2f}")
 
 
 #Waterbottle options
+
+
+
+#Option for new order or to exit
 
 #Main function
 def main():
@@ -155,8 +183,11 @@ def main():
     Returns:None
     '''
     welcome()
-    order_type()
+    del_pick = order_type()
     menu()
     order_waterbottle()
+#Del pick is the variable used for print order to run
+    print_order(del_pick)
+
 
 main()

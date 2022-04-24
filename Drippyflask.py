@@ -172,7 +172,30 @@ def print_order(del_pick):
     print("Total Order Cost")
     print(f"${total_cost:.2f}")
     
-#Waterbottle options
+# Ability to cancel or proceed with order
+def confirm_cancel():
+    print ("Please Confirm your Order") 
+    print ("To confirm please enter 1 ")
+    print ("To cancel please enter 2")
+    while True:
+        try:
+            confirm = int(input("Please enter a number"))
+            if confirm >= 1 and confirm  <= 2:
+                if confirm == 1: 
+                    print ("ORDER CONFIRMED")
+                    print ("Your order has been sent to our production/factory")
+                    print ("Your charming hydroflask/waterbottle will be with your shortly")
+                    break
+
+                elif confirm == 2:
+                    print ("YOUR ORDER HAS BEEN CANCELLED")
+                    print ("You can restart your order or exit the BOT")
+                    break
+            else:
+                print("The Number must be 1 or 2")
+        except ValueError:
+            print ("That is not a valid number")
+            print ("Please enter 1 or 2")
 
 
 
@@ -191,6 +214,7 @@ def main():
     order_waterbottle()
 #Del pick is the variable used for print order to run
     print_order(del_pick)
+    confirm_cancel()
 
 
 main()

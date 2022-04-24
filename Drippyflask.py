@@ -62,6 +62,8 @@ def order_type():
 #Sets it up so the code will be delivery if customer chose number 2
                 elif delivery == 2:
                     print ("Delivery")
+                    order_list.append("Delivery Charge")
+                    order_cost.append(5)
                     delivery_info()
                     del_pick = delivery
                     break
@@ -148,18 +150,20 @@ def order_waterbottle():
             print("{} ${:.2f}" .format(bottle_names[waterbottle_ordered],bottle_prices[waterbottle_ordered]))
             num_waterbottles = num_waterbottles-1 
 
-#Print order out _omfc;idomg of prder os delivery or pickup and names and price of each pizza - total cost including any delivery charge
+#Print order out _omfc;idomg of order os delivery or pickup and names and price of each pizza - total cost including any delivery charge
 def print_order(del_pick):
+    print()
     total_cost = sum(order_cost)
-    print("Customer Details")
+    print("Your Details")
     if del_pick == "pickup":
         print ("Your Order is for pickup")
         print(f"Customer name: {customer_details['name']} \nCustomer phone: {customer_details['phone']}")
     elif del_pick == "delivery":
-        print ("Your Order is for delivery")
+        print ("Your Order is for delivery a $5.00 delivery charge applies")
+        #total_cost = total_cost + 5
         print(f"Customer name: {customer_details['name']} \nCustomer phone: {customer_details['phone']}\nCustomer Address:{customer_details['house']} {customer_details['street']} {customer_details['suburb']} ")
     print ()
-    print("Order Details")
+    print("Your Order Details")
     count = 0
     for item in order_list:
         print ("Ordered: {} Cost ${:2}".format(item, order_cost[count]))

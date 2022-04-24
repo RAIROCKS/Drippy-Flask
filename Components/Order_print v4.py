@@ -19,4 +19,4 @@ def print_order():
     print("Total Order Cost")
     print(f"${total_cost:.2f}")
 
-print_order()
+print_order

@@ -8,10 +8,13 @@ while True:
         if confirm >= 1 and confirm  <= 2:
             if confirm == 1: 
                 print ("ORDER CONFIRMED")
+                print ("Your order has been sent to our production/factory")
+                print ("Your charming hydroflask/waterbottle will be with your shortly")
                 break
 
             elif confirm == 2:
-                print ("ORDER CANCELLED")
+                print ("YOUR ORDER HAS BEEN CANCELLED")
+                print ("You can restart your order or exit the BOT")
                 break
         else:
             print("The Number must be 1 or 2")

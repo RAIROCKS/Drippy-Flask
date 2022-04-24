@@ -1,4 +1,5 @@
 #Drippy flask program
+import sys
 import random
 from random import randint
 
@@ -184,12 +185,14 @@ def confirm_cancel():
                 if confirm == 1: 
                     print ("ORDER CONFIRMED")
                     print ("Your order has been sent to our production/factory")
-                    print ("Your charming hydroflask/waterbottle will be with your shortly")
+                    print ("Your drippy and pretty hydroflask/waterbottle will be with your shortly")
+                    new_exit()
                     break
 
                 elif confirm == 2:
                     print ("YOUR ORDER HAS BEEN CANCELLED")
                     print ("You can restart your order or exit the BOT")
+                    new_exit()
                     break
             else:
                 print("The Number must be 1 or 2")
@@ -200,7 +203,35 @@ def confirm_cancel():
 
 
 #Option for new order or to exit
+def new_exit():
+    print ("Do you want to start another order or exit?") 
+    print ("To start another order please enter 1 ")
+    print ("To exit please enter 2")
+    while True:
+        try:
+            confirm = int(input("Please enter a number"))
+            if confirm >= 1 and confirm  <= 2:
+                if confirm == 1: 
+                    print ("New Order")
+                    order_list.clear()
+                    order_cost.clear()
+                    customer_details.clear()
+                    main()
+                    break
 
+                elif confirm == 2:
+                    print ("Exit")
+                    order_list.clear()
+                    order_cost.clear()
+                    customer_details.clear()
+                    sys.exit()
+                    break
+            else:
+                print("The Number must be 1 or 2")
+        except ValueError:
+            print ("That is not a valid number")
+            print ("Please enter 1 or 2")
+ 
 #Main function
 def main():
     '''

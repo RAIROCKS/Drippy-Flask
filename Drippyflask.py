@@ -62,10 +62,10 @@ def order_type():
 #Sets it up so the code will be delivery if customer chose number 2
                 elif delivery == 2:
                     print ("Delivery")
-                    order_list.append("Delivery Charge")
-                    order_cost.append(5)
+                    #order_list.append("Delivery Charge")
+                    #order_cost.append(5)
                     delivery_info()
-                    del_pick = delivery
+                    del_pick = "delivery"
                     break
             else:
                 print("The Number must be 1 or 2")
@@ -160,7 +160,7 @@ def print_order(del_pick):
         print(f"Customer name: {customer_details['name']} \nCustomer phone: {customer_details['phone']}")
     elif del_pick == "delivery":
         print ("Your Order is for delivery a $5.00 delivery charge applies")
-        #total_cost = total_cost + 5
+        total_cost = total_cost + 5
         print(f"Customer name: {customer_details['name']} \nCustomer phone: {customer_details['phone']}\nCustomer Address:{customer_details['house']} {customer_details['street']} {customer_details['suburb']} ")
     print ()
     print("Your Order Details")
@@ -171,8 +171,7 @@ def print_order(del_pick):
     print()
     print("Total Order Cost")
     print(f"${total_cost:.2f}")
-
-
+    
 #Waterbottle options
 
 

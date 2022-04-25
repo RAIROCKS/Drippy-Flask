@@ -19,7 +19,7 @@ while True:
                 order_list.clear()
                 order_cost.clear()
                 customer_details.clear()
-                main()
+                #main()
                 break
 
             elif confirm == 2:

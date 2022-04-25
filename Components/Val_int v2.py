@@ -1,4 +1,4 @@
-def order_type(low, high, question):
+def val_int(low, high, question):
     while True:
         try:
             num = int(input(question))
@@ -17,6 +17,6 @@ LOW = 1
 HIGH = 2
 question = (f"Enter a number between {LOW} and {HIGH}")
 
-answer = order_type(LOW, HIGH, question)
+answer = val_int(LOW, HIGH, question)
 
 print(answer)

@@ -1,4 +1,9 @@
 #Drippy flask program
+#20/02/22
+#Bugs- Phone number input allows letters
+#20/03/22 Final printout is not printing customer details correctly
+#20/03/22 Some questions wont show up
+
 import sys
 import random
 from random import randint
@@ -29,6 +34,20 @@ def not_blank(question):
         else:
             print("This cannot be blank")
 
+#Validates inputs to check if they are an integer
+def val_int(low, high, question):
+    while True:
+        try:
+            num = int(input(question))
+            if num >= low and num  <= high:
+                return num
+            else:
+                print(f"Please Enter a number between {low} and {high}")
+        except ValueError:
+            print ("That is not a valid number")
+            print (f"Please enter a number between {low} and {high}")
+
+
 
 #Welcome Message
 def welcome():
@@ -47,41 +66,33 @@ def welcome():
 #Menu for pickup or delivery
 def order_type():
     del_pick = ""
+    LOW = 1
+    HIGH = 2
+#The question that asks the customer to enter a number between the numbers 1 or 2 
+    question = (f"Enter a number between {LOW} and {HIGH} ")
     print ("Is your order for pickup or delivery?") 
-    print ("For pick up please enter 1 ")
+    print ("For pick up please enter 1")
     print ("For delivery please enter 2")
-    while True:
-        try:
-            delivery = int(input("Please enter a number"))
-            if delivery >= 1 and delivery  <= 2:
-#Sets it up so the code will be delivery if customer chose number 2
-                if delivery == 1: 
-                    print ("Pickup")
-                    del_pick="pickup"
-                    pickup_info()
-                    break
-#Sets it up so the code will be delivery if customer chose number 2
-                elif delivery == 2:
-                    print ("Delivery")
-                    #order_list.append("Delivery Charge")
-                    #order_cost.append(5)
-                    delivery_info()
-                    del_pick = "delivery"
-                    break
-            else:
-                print("The Number must be 1 or 2")
-        except ValueError:
-            print ("That is not a valid number")
-            print ("Please enter 1 or 2")
+    delivery = val_int(LOW, HIGH, question)
+#Sets it up so the code will run the pickup function if customer chose number 2
+    if delivery == 1: 
+        print ("Pickup")
+        del_pick="pickup"
+        pickup_info()
+#Sets it up so the code will run the delivery function if customer chose number 2
+    else:
+        print ("Delivery")
+        delivery_info()
+        del_pick = "delivery"
     return del_pick
 
 #Pick up information - name and phone number
 def pickup_info():
-    question = ("Please enter your name")
+    question = ("Please enter your name ")
     customer_details ['name'] = not_blank(question)
     print (customer_details ['name']) 
 
-    question = ("Please enter your phone number")
+    question = ("Please enter your phone number ")
     customer_details ['phone'] = not_blank(question)
     print (customer_details ['phone'])  
     print (customer_details)
@@ -95,15 +106,15 @@ def delivery_info():
     customer_details ['phone'] = not_blank(question)
     print (customer_details ['phone'])  
     
-    question = ("Please enter your house number")
+    question = ("Please enter your house number ")
     customer_details ['house'] = not_blank(question)
     print (customer_details ['house'])  
 
-    question = ("Please enter your street name")
+    question = ("Please enter your street name ")
     customer_details ['street'] = not_blank(question)
     print (customer_details ['street'])  
 
-    question = ("Please enter your suburb")
+    question = ("Please enter your suburb ")
     customer_details ['suburb'] = not_blank(question)
     print (customer_details ['suburb']) 
 
@@ -115,36 +126,27 @@ def menu():
 
 #Choose total number of Waterbottles
 #Waterbottle order - from menu - printed each pizza ordered with cast
+#Stops users from ordering more than 5 waterbottles
 def order_waterbottle():
     #ask for total number of waterbottles for order
     num_waterbottles =0
-    #Stops users from ordering more than 5 waterbottles
-    while True:
-        try:
-            num_waterbottles =int(input ("How many waterbottles do you want to order?"))
-            if num_waterbottles >=1 and num_waterbottles <=5:
-                break
-            else:
-                print ("Your order must be between 1 and 5")
-        except ValueError:
-            print ("That is not a valid number")
-            print ("Please enter a number between 1 to 5")
-    print (num_waterbottles)
+    LOW = 1
+    HIGH = 5
+    MENU_LOW=1
+    MENU_HIGH=12
+    #The question that asks the customer to enter a number between the numbers 1 or 12
+    question = (f"Enter a number between {LOW} and {HIGH} ")
+    print("How many water bottles do you want to order?")
+    num_waterbottles =val_int(LOW, HIGH, question)
+
     #Choose waterbottle from menu
     #This next code's function will loop depending on the number the customer chooses
     for item in range (num_waterbottles):
         while num_waterbottles > 0:
-            while True:
-                try:
-                    waterbottle_ordered =int(input ("Please choose your waterbottle by entering the number from the menu"))
-                    if waterbottle_ordered >=1 and waterbottle_ordered <=12:
-                        break
-                    else:
-                        print ("Your order must be between 1 and 12")
-                except ValueError:
-                    print ("That is not a valid number")
-                    print ("Please enter a number between 1 to 12")
-    #This function is there to prevent the program from skipping the first item on the menu
+            print ("Please choose your waterbottles by entering the number from the menu")
+            question = (f"Enter a number between {MENU_LOW} and {MENU_HIGH} ")
+            waterbottle_ordered =val_int(MENU_LOW, MENU_HIGH, question)
+            #This function is there to prevent the program from skipping the first item on the menu
             waterbottle_ordered = waterbottle_ordered-1
             order_list.append(bottle_names[waterbottle_ordered])
             order_cost.append(bottle_prices[waterbottle_ordered])
@@ -175,62 +177,54 @@ def print_order(del_pick):
     
 # Ability to cancel or proceed with order
 def confirm_cancel():
+    LOW = 1
+    HIGH = 2
+#The question that asks the customer to enter a number between the numbers 1 or 2 
+    question = (f"Enter a number between {LOW} and {HIGH} ")
     print ("Please Confirm your Order") 
     print ("To confirm please enter 1 ")
     print ("To cancel please enter 2")
-    while True:
-        try:
-            confirm = int(input("Please enter a number"))
-            if confirm >= 1 and confirm  <= 2:
-                if confirm == 1: 
-                    print ("ORDER CONFIRMED")
-                    print ("Your order has been sent to our production/factory")
-                    print ("Your drippy and pretty hydroflask/waterbottle will be with your shortly")
-                    new_exit()
-                    break
 
-                elif confirm == 2:
-                    print ("YOUR ORDER HAS BEEN CANCELLED")
-                    print ("You can restart your order or exit the BOT")
-                    new_exit()
-                    break
-            else:
-                print("The Number must be 1 or 2")
-        except ValueError:
-            print ("That is not a valid number")
-            print ("Please enter 1 or 2")
+    confirm = val_int(LOW, HIGH, question)
+    if confirm == 1: 
+        print ("ORDER CONFIRMED")
+        print ("Your order has been sent to our production/factory")
+        print ("Your drippy and pretty hydroflask/waterbottle will be with your shortly")
+        new_exit()
+                
+    elif confirm == 2:
+        print ("YOUR ORDER HAS BEEN CANCELLED")
+        print ("You can restart your order or exit the BOT")
+        new_exit()
+
 
 
 
 #Option for new order or to exit
 def new_exit():
+    LOW = 1
+    HIGH = 2
+#The question that asks the customer to enter a number between the numbers 1 or 2 
+    question = (f"Enter a number between {LOW} and {HIGH} ")
     print ("Do you want to start another order or exit?") 
     print ("To start another order please enter 1 ")
     print ("To exit please enter 2")
-    while True:
-        try:
-            confirm = int(input("Please enter a number"))
-            if confirm >= 1 and confirm  <= 2:
-                if confirm == 1: 
-                    print ("New Order")
-                    order_list.clear()
-                    order_cost.clear()
-                    customer_details.clear()
-                    main()
-                    break
+    confirm = val_int(LOW, HIGH, question)
 
-                elif confirm == 2:
-                    print ("Exit")
-                    order_list.clear()
-                    order_cost.clear()
-                    customer_details.clear()
-                    sys.exit()
-                    break
-            else:
-                print("The Number must be 1 or 2")
-        except ValueError:
-            print ("That is not a valid number")
-            print ("Please enter 1 or 2")
+    if confirm == 1: 
+        print ("New Order")
+        order_list.clear()
+        order_cost.clear()
+        customer_details.clear()
+        main()
+    
+    elif confirm == 2:
+        print ("Exit")
+        order_list.clear()
+        order_cost.clear()
+        customer_details.clear()
+        sys.exit()
+
  
 #Main function
 def main():

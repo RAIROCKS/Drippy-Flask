@@ -1,30 +1,34 @@
-#Drippy flask program
-#20/02/22
-#Bugs- Phone number input allows letters
-#20/03/22 Final printout is not printing customer details correctly
-#20/03/22 Some questions wont show up
+# Drippy flask program
+# 20/02/22
+# Bugs- Phone number input allows letters
+# 20/03/22 Final printout is not printing customer details correctly
+# 20/03/22 Some questions wont show up
 
 import sys
 import random
 from random import randint
 
-#Lists 
-#List of random names
-names = ["Marlon","Peire","Fatimah","Zara","Hannah","Yammy","Quin","Gabriel","Karen","Eren"]
-#Lists of bottle names
-bottle_names =['Ice cool blue','Red and hot','Chill green','Relax rainbow','Black and bold','Humble purple',
-'Aqua flask','Luxury Gold','Silvery simple','Orange hub','Clean White','Lovely pink']
-#Lists of bottle prices
-bottle_prices=[60,65,65,62,55,62,66,69,47,69,49,52,]
-#list to store ordered waterbottles
+# Lists 
+# List of random names
+names = ["Marlon","Peire","Fatimah",
+        "Zara","Hannah","Yammy","Quin",
+        "Gabriel","Karen","Eren"]
+# Lists of bottle names
+bottle_names =['Ice cool blue','Red and hot','Chill green',
+            'Relax rainbow','Black and bold','Humble purple',
+            'Aqua flask','Luxury Gold','Silvery simple',
+            'Orange hub','Clean White','Lovely pink']
+# Lists of bottle prices
+bottle_prices=[60, 65, 65, 62, 55, 62, 66, 69, 47, 69, 49, 52,]
+# list to store ordered waterbottles
 order_list= []
-#list to store waterbottles prices
+# list to store waterbottles prices
 order_cost= []
 
- #Customer details dictionary
+# Customer details dictionary
 customer_details ={}
 
-#Validates inputs to check if they are blank
+# Validates inputs to check if they are blank
 def not_blank(question):
     valid = False
     while not valid:
@@ -34,7 +38,7 @@ def not_blank(question):
         else:
             print("This cannot be blank")
 
-#Validates inputs to check if they are an integer
+# Validates inputs to check if they are an integer
 def val_int(low, high, question):
     while True:
         try:
@@ -49,7 +53,7 @@ def val_int(low, high, question):
 
 
 
-#Welcome Message
+# Welcome Message
 def welcome():
     '''
     Purpose: To generate a random name from the list and print out
@@ -59,16 +63,16 @@ def welcome():
     '''
     num = randint(0,9)
     name = (names[num])
-    print ("****** WELCOME TO DRIPPYFLASKS *****")
+    print("****** WELCOME TO DRIPPYFLASKS *****")
     print("****** My name is", name ,"******")
     print("****** I will be here to help you order your drippy flask/s ******")
 
-#Menu for pickup or delivery
+# Menu for pickup or delivery
 def order_type():
     del_pick = ""
     LOW = 1
     HIGH = 2
-#The question that asks the customer to enter a number between the numbers 1 or 2 
+# The question that asks the customer to enter a number between the numbers 1 or 2 
     question = (f"Enter a number between {LOW} and {HIGH} ")
     print ("Is your order for pickup or delivery?") 
     print ("For pick up please enter 1")

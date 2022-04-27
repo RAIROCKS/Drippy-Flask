@@ -10,6 +10,11 @@ from random import randint
 # Constants
 LOW = 1 
 HIGH = 2
+# Setting the boundaries of the number limit for the Ph number to 7 and 10 for the ph num
+PH_LOW = 7
+PH_HIGH= 10
+
+
 # Lists 
 # List of random names
 names = ["Marlon","Peire","Fatimah",
@@ -63,6 +68,28 @@ def val_int(low, high, question):
             print ("That is not a valid number")
             print (f"Please enter a number between {low} and {high}")
 
+# Check phone
+def check_phone(question, PH_LOW, PH_HIGH):
+    while True:
+        try:
+            #Prints the question
+            num = int(input(question))
+            test_num = num
+            count = 0
+            while test_num >0:
+                test_num = test_num//10
+                count = count + 1
+            # This will accept the number if the number is > than 7 or if it is < 10
+            if count >= PH_LOW and count <=PH_HIGH:
+                return str(num)
+            else:
+            # Prints the statement if the number isnt between 7 and 10 digits
+                print ("NZ phone numbers have between 7 and 10 digits")
+                
+
+        except ValueError:
+            print ("Please enter numbers only")
+
 
 
 # Welcome Message
@@ -107,7 +134,7 @@ def pickup_info():
     print (customer_details ['name']) 
 
     question = ("Please enter your phone number ")
-    customer_details ['phone'] = not_blank(question)
+    customer_details ['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     print (customer_details ['phone'])  
     print (customer_details)
 #Delivery Information - name address and phone
@@ -117,7 +144,7 @@ def delivery_info():
     print (customer_details ['name']) 
 
     question = ("Please enter your phone number ")
-    customer_details ['phone'] = not_blank(question)
+    customer_details ['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     print (customer_details ['phone'])  
     
     question = ("Please enter your house number ")

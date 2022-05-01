@@ -48,8 +48,8 @@ def not_blank(question):
             return response.title()
             # if response not blank, it returns response in title class
         else:
-            print("This cannot be blank")  # Prints error message
-#Check string for name make sure its only alphabets
+            print("This cannot be blank") # Prints error message
+# Check string for name make sure its only alphabets
 # Validtes inputs to check if they are an integer.
 # Takes question as parameter
 def check_string(question):
@@ -200,9 +200,9 @@ def menu(): # Defines following code as menu
         print("{} {} ${:.2f}" .format(count+1,bottle_names[count],bottle_prices[count]))
         # Print the waterbottle menu with prices
 
-#Choose total number of Waterbottles
-#Waterbottle order - from menu - printed each pizza ordered with cast
-#Stops users from ordering more than 5 waterbottles
+# Choose total number of Waterbottles
+# Waterbottle order - from menu - printed each pizza ordered with cast
+# Stops users from ordering more than 5 waterbottles
 def order_waterbottle(): # Defines following code as order_waterbottle
     #ask for total number of waterbottles for order
     num_waterbottles =0  # num_waterbottles equals 0
@@ -210,7 +210,7 @@ def order_waterbottle(): # Defines following code as order_waterbottle
     NUM_HIGH = 5  # Set Constant as infinite
     MENU_LOW=1 # Set Constant as 1
     MENU_HIGH=12  # Set Constant as 12
-    #The question that asks the customer to enter a number between the numbers 1 or 12
+    # The question that asks the customer to enter a number between the numbers 1 or 12
     question = (f"Enter a number between {NUM_LOW} and {NUM_HIGH} ")
     # Asks user to enter number between 1 and inf
     print("How many water bottles do you want to order?")
@@ -238,7 +238,7 @@ def order_waterbottle(): # Defines following code as order_waterbottle
             num_waterbottles = num_waterbottles-1 
              # num_waterbottles equals num_waterbottles minus 1
 
-#Print order out _omfc;idomg of order os delivery or pickup and names and price of each pizza - total cost including any delivery charge
+# Print order out _omfc;idomg of order os delivery or pickup and names and price of each pizza - total cost including any delivery charge
 # names and price of each waterbottle- total cost including any delivery charge 
 def print_order(del_pick):
     # Defines code as print_order(del_pick) with parameter
@@ -255,7 +255,7 @@ def print_order(del_pick):
         print ("Your Order is for delivery a $5.00 delivery charge applies")
         # Prints message
         total_cost = total_cost + 9
-        # Adds $9 to the total cost of food ordered
+        # Adds $9 to the total cost of waterbottle ordered
         print(f"Customer name: {customer_details['name']} \nCustomer phone: {customer_details['phone']}\nCustomer Address:{customer_details['house']} {customer_details['street']} {customer_details['suburb']} ")
          # print customers name, phone, address, house etc.
     print ()  # Print blank line
@@ -288,7 +288,7 @@ def confirm_cancel(): # Defines the following code as confirm_cancel
         print ("Your order has been sent to our production/factory")
         # Prints Your order has been sent to our kitchen
         print ("Your drippy and pretty hydroflask/waterbottle will be with your shortly")
-        # Prints Your Delicious Food will be with you shortly
+        # Prints Your Delicious waterbottle will be with you shortly
         new_exit() # Moves on to option for new order or exit the bot
                 
     elif confirm == 2:
@@ -318,15 +318,15 @@ def new_exit(): # Defines the following code as new_exit
 
     if confirm == 1:  # If input equals 1
         print ("New Order") # Prints 'Exit' message
-        order_list.clear() # Clears the list of food names
-        order_cost.clear() # Clears the costs of foods
+        order_list.clear() # Clears the list of waterbottle names
+        order_cost.clear() # Clears the costs of waterbottles
         customer_details.clear()  # Clears the previous customer details
         main() #Main Function
     
     elif confirm == 2: # Else if confirm input equals 2
         print ("Exit") # Prints 'Exit' message
-        order_list.clear()  # Clears the list of food names
-        order_cost.clear() # Clears the costs of foods
+        order_list.clear()  # Clears the list of waterbottle names
+        order_cost.clear() # Clears the costs of waterbottles
         customer_details.clear() # Clears the previous customer details
         sys.exit()  # Exits the bot fully
 

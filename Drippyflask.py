@@ -19,7 +19,7 @@ PH_HIGH= 10
 # Lists 
 # List of random names
 names = ["Marlon","Peire","Fatimah",
-        "Zara","Hannah","Yammy","Quin",
+        "Zara","Hannah","Pahuwu","Quin",
         "Gabriel","Karen","Eren"]
 # Lists of bottle names
 bottle_names =['Ice cool blue','Red and hot',
@@ -35,7 +35,7 @@ order_list= []
 # list to store waterbottles prices
 order_cost= []
 # Customer details dictionary
-customer_details ={}
+customer_details = {}
 
 # Validates inputs to check if they are blank
 # Takes question as parameter
@@ -49,6 +49,8 @@ def not_blank(question):
             # if response not blank, it returns response in title class
         else:
             print("This cannot be blank") # Prints error message
+
+
 # Check string for name make sure its only alphabets
 # Validtes inputs to check if they are an integer.
 # Takes question as parameter
@@ -123,6 +125,8 @@ def welcome():
     print("****** My name is", name ,"******")
 # Prints message that they will helping the user make their order 
     print("****** I will be here to help you order your drippy flask/s ******")
+print()
+
 
 # Menu for pickup or delivery
 def order_type(): # Defines following code as order_type
@@ -146,6 +150,8 @@ def order_type(): # Defines following code as order_type
         delivery_info()  # delivery_info function
         del_pick = "delivery"  # del_pick equals Delivery
     return del_pick  # Returns and accepts inputs
+print()
+
 
 #Pick up information - name and phone number
 def pickup_info(): # Defines following code as pickup_info
@@ -160,8 +166,10 @@ def pickup_info(): # Defines following code as pickup_info
     # print (customer_details['phone'])
     print (customer_details ['phone'])  
     print (customer_details)  # Prints customer's phone number
+print()
 
-#Delivery Information - name address and phone
+
+# Delivery Information - name address and phone
 def delivery_info():  # Defines following code as delivery_info
     question = ("Please enter your name ") # Asks user to enter their name
     customer_details ['name'] = check_string(question)
@@ -192,6 +200,7 @@ def delivery_info():  # Defines following code as delivery_info
     # Validates the input of suburb
     print (customer_details ['suburb']) 
     # Prints customer's suburb 
+print()
 
 # Waterbottle menu
 def menu(): # Defines following code as menu
@@ -199,27 +208,29 @@ def menu(): # Defines following code as menu
     for count in range(number_bottles) : # For water bottle(s) ranged between 1 and 12
         print("{} {} ${:.2f}" .format(count+1,bottle_names[count],bottle_prices[count]))
         # Print the waterbottle menu with prices
+print()
+
 
 # Choose total number of Waterbottles
-# Waterbottle order - from menu - printed each pizza ordered with cast
+# Waterbottle order - from menu - printed each waterbpttle ordered with cast
 # Stops users from ordering more than 5 waterbottles
 def order_waterbottle(): # Defines following code as order_waterbottle
     #ask for total number of waterbottles for order
     num_waterbottles =0  # num_waterbottles equals 0
     NUM_LOW = 1  # Set Constant as 1
-    NUM_HIGH = 5  # Set Constant as infinite
-    MENU_LOW=1 # Set Constant as 1
-    MENU_HIGH=12  # Set Constant as 12
+    NUM_HIGH = 5  # Set Constant as 5
+    MENU_LOW = 1 # Set Constant as 1
+    MENU_HIGH = 12  # Set Constant as 12
     # The question that asks the customer to enter a number between the numbers 1 or 12
     question = (f"Enter a number between {NUM_LOW} and {NUM_HIGH} ")
-    # Asks user to enter number between 1 and inf
+    # Asks user to enter number between 1 and 5
     print("How many water bottles do you want to order?")
     # Prints how many waterbottle(s) do you want to order?
     num_waterbottles =val_int(NUM_LOW, NUM_HIGH, question)
     # num_waterbottles equals validated input
 
-    #Choose waterbottle from menu
-    #This next code's function will loop depending on the number the customer chooses
+    # Choose waterbottle from menu
+    # This next code's function will loop depending on the number the customer chooses
     for item in range (num_waterbottles): # For water bottle(s) between 1 and 12
         while num_waterbottles > 0: # While input is greater than 0
             print ("Please choose your waterbottles by entering the number from the menu")
@@ -237,9 +248,11 @@ def order_waterbottle(): # Defines following code as order_waterbottle
             # Print waterbottle(s) ordered with prices
             num_waterbottles = num_waterbottles-1 
              # num_waterbottles equals num_waterbottles minus 1
+print()
 
-# Print order out _omfc;idomg of order os delivery or pickup and names and price of each pizza - total cost including any delivery charge
-# names and price of each waterbottle- total cost including any delivery charge 
+
+# Print order out -including if order is delivery or pickup and names
+# and price of each waterbottle- total cost including any delivery charge 
 def print_order(del_pick):
     # Defines code as print_order(del_pick) with parameter
     print() # print blank line
@@ -268,7 +281,9 @@ def print_order(del_pick):
     print()  # Print blank space
     print("Total Order Cost") # Prints Total Order Cost
     print(f"${total_cost:.2f}") # Prints the total cost in $
-    
+print()
+
+
 # Ability to cancel or proceed with order
 # Asks user to confirm their order
 # Asks user to enter 1 or 2 to confirm or cancel
@@ -277,7 +292,7 @@ def confirm_cancel(): # Defines the following code as confirm_cancel
     question = (f"Enter a number between {LOW} and {HIGH} ")
     print ("Please Confirm your Order")  # Prints Please Confirm Your Order 
     print ("To confirm please enter 1 ") # Prints To Confirm Please Enter 1
-    print ("To cancel please enter 2") # Prints To Cancel Please Enter 2
+    print ("To cancel please enter 2")   # Prints To Cancel Please Enter 2
     print ()
     # Order for confirmation
     # If confirm equals 1
@@ -295,8 +310,7 @@ def confirm_cancel(): # Defines the following code as confirm_cancel
         print ("YOUR ORDER HAS BEEN CANCELLED")
         print ("You can restart your order or exit the BOT")
         new_exit()
-
-
+print()
 
 
 # Option for new order or to exit 
@@ -307,7 +321,7 @@ def new_exit(): # Defines the following code as new_exit
     print()
 #The question that asks the customer to enter a number between the numbers 1 or 2 
     question = (f"Enter a number between {LOW} and {HIGH} ")
-    print ("Do you want to start another order or exit?") 
+    print ("Do you want to start another order or exit? ") 
     # Prints do you want to start another order? or exit?
     print ("To start another order please enter 1 ")
     # Prints to start another order, they must enter 1
@@ -329,7 +343,7 @@ def new_exit(): # Defines the following code as new_exit
         order_cost.clear() # Clears the costs of waterbottles
         customer_details.clear() # Clears the previous customer details
         sys.exit()  # Exits the bot fully
-
+print()
  
 #Main function
 def main():# Define the following code as main
